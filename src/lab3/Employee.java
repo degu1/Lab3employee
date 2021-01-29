@@ -1,31 +1,42 @@
 package lab3;
 
-import static lab3.Main.sc;
+import java.util.Scanner;
 
 public class Employee {
+
+    Scanner sc = new Scanner(System.in);
 
     private int id;
     private static int idGenerator = 1;
     private String name;
     private int age;
-    protected double salary;
+    private double salary;
+    private double bonus;
+
     private String email;
     private String tel;
 
     public Employee() {
+        this.id = idGenerator++;
     }
 
     public Employee(String name, int age, String email, String tel) {
+
+        this.id = idGenerator++;
         this.name = name;
         this.age = age;
         this.email = email;
         this.tel = tel;
-        this.id = idGenerator++;
-        setSalary(age);
+        this.salary = calculateSalary(age);
+        this.bonus = 0;
     }
 
-    protected void setSalary(int age) {
-        this.salary = 20000.0 + (age - 18) * 1000;
+    public double calculateSalary(int age) {
+        return 20000.0 + (age - 18) * 1000;
+    }
+
+    public double getBonus() {
+        return bonus;
     }
 
     public double getSalary() {
@@ -62,11 +73,14 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
-        setSalary(age);
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setBonus(int preformance) {
+        this.bonus = 1000.0 * preformance;
     }
 
     public void printAtributs() {
@@ -90,7 +104,7 @@ public class Employee {
                 int age = sc.nextInt();
                 sc.nextLine();
                 setAge(age);
-
+                break;
             }
             case 3: {
                 System.out.print("Enter email:");
@@ -111,7 +125,9 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Id: " + id + ", Name: " + name + ", Age: " + age + ", Email: " + email + ", Tel: " + tel + ", Salary: " + salary;
+        return "Id: " + id + ", Name: " + name + ", Age: " + age + ", Email: "
+                + email + ", Tel: " + tel + ", Salary: " + getSalary()
+                + ", Bonus: " + bonus;
     }
 
 }
