@@ -12,7 +12,6 @@ public class Employee {
     private int age;
     private double salary;
     private double bonus;
-
     private String email;
     private String tel;
 
@@ -79,6 +78,7 @@ public class Employee {
         return id;
     }
 
+    //preformance is a integer (1-10)
     public void setBonus(int preformance) {
         this.bonus = 1000.0 * preformance;
     }

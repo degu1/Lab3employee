@@ -1,5 +1,14 @@
+/*
+    The Main class contains except the code that directly depends on the 
+    attributes for the different employees. This code is found in Employee 
+    class and it’s subclasses. This makes it possible to add a new attribute to 
+    on type of employee and only make changes in that employee class. 
+
+ */
+
 package lab3;
 
+import analytics.AnalyticsUI;
 import java.util.Scanner;
 
 public class Main {
@@ -74,8 +83,8 @@ public class Main {
             }
 
             case 8: {
-                Analytics analytics = new Analytics();
-                analytics.AnalyticsMenu(employeeManegment.getEmployeeRecords());
+                AnalyticsUI analytics = new AnalyticsUI();
+                analytics.AnalyticsMenu(employeeManegment.getAllEmployees());
                 break;
             }
             default:
@@ -84,12 +93,13 @@ public class Main {
     }
 
     public static void printEmployees() {
-        for (Employee employee : employeeManegment.getEmployeeRecords()) {
+        for (Employee employee : employeeManegment.getAllEmployees()) {
             System.out.println(employee);
         }
         System.out.println("");
     }
- public static void printByTypeMenue() {
+
+    public static void printByTypeMenue() {
 
         System.out.println("1. Programmer");
         System.out.println("2. Secritary");
@@ -109,36 +119,30 @@ public class Main {
                 break;
         }
     }
- 
+
     public static void printProgrammers() {
-        for (Employee employee : employeeManegment.getEmployeeRecords()) {
-            if (employee instanceof Programmer) {
-                System.out.println(employee);
-            }
+        for (Employee employee : employeeManegment.getAllProgrammers()) {
+            System.out.println(employee);
         }
         System.out.println("");
     }
 
     public static void printSecretaries() {
-        for (Employee employee : employeeManegment.getEmployeeRecords()) {
-            if (employee instanceof Secretarie) {
-                System.out.println(employee);
-            }
+        for (Employee employee : employeeManegment.getAllSecretaries()) {
+            System.out.println(employee);
         }
         System.out.println("");
     }
 
     public static void printTechnician() {
-        for (Employee employee : employeeManegment.getEmployeeRecords()) {
-            if (employee instanceof Technician) {
-                System.out.println(employee);
-            }
+        for (Employee employee : employeeManegment.getAllTechnicians()) {
+            System.out.println(employee);
         }
         System.out.println("");
     }
 
     public static void printEmployeeById(int id) {
-        for (Employee employee : employeeManegment.getEmployeeRecords()) {
+        for (Employee employee : employeeManegment.getAllEmployees()) {
             if (employee.getId() == id) {
                 System.out.println(employee);
                 break;
