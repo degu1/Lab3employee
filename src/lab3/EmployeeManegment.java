@@ -86,7 +86,7 @@ public class EmployeeManegment {
         Secretarie e4 = new Secretarie("Alice", 26, "alice@mail.com", "324556", "Main office");
         Secretarie e5 = new Secretarie("Noah", 47, "noah@mail.com", "523634", "Main office");
         Programmer e6 = new Programmer("Elsa", 21, "elsa@mail.com", "326789", "Java");
-        Programmer e7 = new Programmer("Astird", 28, "astrid@mail.com", "346523", "C++");
+        Programmer e7 = new Programmer("Astrid", 28, "astrid@mail.com", "346523", "C++");
         Programmer e8 = new Programmer("Lucas", 50, "lucas@mail.com", "763454", "C++");
         Programmer e9 = new Programmer("Liam", 37, "liam@mail.com", "344576", "Java");
         Programmer e10 = new Programmer("Freja", 21, "freja@mail.com", "485623", "C++");

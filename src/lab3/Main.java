@@ -215,7 +215,7 @@ public class Main {
                 return new Programmer(name, age, email, tel, language);
             }
             default: {
-                System.out.println("Not valid choice");
+                System.out.println("Not valid choice of title");
                 System.out.println("");
                 return null;
             }

@@ -10,29 +10,36 @@ public class AnalyticsUI {
     private Scanner sc = new Scanner(System.in);
 
     public void AnalyticsMenu(ArrayList<Employee> employeeRecord) {
-        System.out.println("1. Average salary");
-        System.out.println("2. Bonus disttriution");
-        System.out.println("3. Print employees with highest salary");
-        System.out.println("4. Print employees with lowest salary");
-        System.out.print("Make your choice: ");
-        int choice = enterInt();
-        System.out.println("");
-        switch (choice) {
-            case 1: {
-                printAverageSalary(employeeRecord);
-                break;
-            }
-            case 2: {
-                printBonusDist(employeeRecord);
-                break;
-            }
-            case 3: {
-                printEmployeeHighestSalary(employeeRecord);
-                break;
-            }
-            case 4: {
-                printEmployeeLowestSalary(employeeRecord);
-                break;
+        boolean inAnalyticsMenu = true;
+        while (inAnalyticsMenu) {
+            System.out.println("1. Average salary");
+            System.out.println("2. Bonus disttriution");
+            System.out.println("3. Print employees with highest salary");
+            System.out.println("4. Print employees with lowest salary");
+            System.out.println("0. Main menu");
+            System.out.print("Make your choice: ");
+            int choice = enterInt();
+            System.out.println("");
+            switch (choice) {
+                case 0: {
+                    inAnalyticsMenu = false;
+                }
+                case 1: {
+                    printAverageSalary(employeeRecord);
+                    break;
+                }
+                case 2: {
+                    printBonusDist(employeeRecord);
+                    break;
+                }
+                case 3: {
+                    printEmployeeHighestSalary(employeeRecord);
+                    break;
+                }
+                case 4: {
+                    printEmployeeLowestSalary(employeeRecord);
+                    break;
+                }
             }
         }
     }
