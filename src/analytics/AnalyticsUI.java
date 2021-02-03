@@ -12,6 +12,8 @@ public class AnalyticsUI {
     public void AnalyticsMenu(ArrayList<Employee> employeeRecord) {
         System.out.println("1. Average salary");
         System.out.println("2. Bonus disttriution");
+        System.out.println("3. Print employees with highest salary");
+        System.out.println("4. Print employees with lowest salary");
         System.out.print("Make your choice: ");
         int choice = enterInt();
         System.out.println("");
@@ -24,7 +26,14 @@ public class AnalyticsUI {
                 printBonusDist(employeeRecord);
                 break;
             }
-
+            case 3: {
+                printEmployeeHighestSalary(employeeRecord);
+                break;
+            }
+            case 4: {
+                printEmployeeLowestSalary(employeeRecord);
+                break;
+            }
         }
     }
 
@@ -44,6 +53,23 @@ public class AnalyticsUI {
         System.out.println("Programmers get " + bonusDis[0] + "% of the total bonus.");
         System.out.println("Secretaries get " + bonusDis[1] + "% of the total bonus.");
         System.out.println("Technicians get " + bonusDis[2] + "% of the total bonus.");
+        System.out.println("");
+    }
+
+    private void printEmployeeHighestSalary(ArrayList<Employee> employeeRecord) {
+
+        ArrayList<Employee> searchResult = getEmplyeesHighestSalary(employeeRecord);
+        for (Employee employee : searchResult) {
+            System.out.println(employee);
+        }
+        System.out.println("");
+    }
+
+    private void printEmployeeLowestSalary(ArrayList<Employee> employeeRecord) {
+        ArrayList<Employee> searchResult = getEmplyeesLowestSalary(employeeRecord);
+        for (Employee employee : searchResult) {
+            System.out.println(employee);
+        }
         System.out.println("");
     }
 

@@ -1,10 +1,6 @@
 package lab3;
 
-import java.util.Scanner;
-
 public class Employee {
-
-    Scanner sc = new Scanner(System.in);
 
     private int id;
     private static int idGenerator = 1;
@@ -81,46 +77,6 @@ public class Employee {
     //preformance is a integer (1-10)
     public void setBonus(int preformance) {
         this.bonus = 1000.0 * preformance;
-    }
-
-    public void printAtributs() {
-        System.out.println("1. Name");
-        System.out.println("2. Age");
-        System.out.println("3. Email");
-        System.out.println("4. tel");
-    }
-
-    public void updateAtributs(int choice) {
-
-        switch (choice) {
-            case 1: {
-                System.out.print("Enter name:");
-                String name = sc.nextLine();
-                this.name = name;
-                break;
-            }
-            case 2: {
-                System.out.print("Enter age:");
-                int age = sc.nextInt();
-                sc.nextLine();
-                setAge(age);
-                break;
-            }
-            case 3: {
-                System.out.print("Enter email:");
-                String email = sc.nextLine();
-                this.email = email;
-                break;
-            }
-            case 4: {
-                System.out.print("Enter tel:");
-                String tel = sc.nextLine();
-                this.tel = tel;
-                break;
-            }
-            default:
-
-        }
     }
 
     @Override

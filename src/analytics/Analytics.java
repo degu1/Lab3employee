@@ -1,6 +1,8 @@
 package analytics;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import javafx.print.Collation;
 import lab3.Employee;
 import lab3.Programmer;
 import lab3.Secretarie;
@@ -56,10 +58,50 @@ public class Analytics {
 
         }
         double[] bonusDis = new double[3];
-        bonusDis[0] = Math.round(totalBonusPro / totalBonus * 100); 
+        bonusDis[0] = Math.round(totalBonusPro / totalBonus * 100);
         bonusDis[1] = Math.round(totalBonusSec / totalBonus * 100);
         bonusDis[2] = Math.round(totalBonusTec / totalBonus * 100);
 
         return bonusDis;
+    }
+
+    public static ArrayList<Employee> getEmplyeesHighestSalary(ArrayList<Employee> employees) {
+        ArrayList<Employee> ans = new ArrayList<>();
+        double highestSalary = getMaxSalary(employees);
+        for (Employee employee : employees) {
+            if (employee.getSalary() == highestSalary)
+                ans.add(employee);
+        }
+        return ans;
+    }
+
+    public static ArrayList<Employee> getEmplyeesLowestSalary(ArrayList<Employee> employees) {
+        ArrayList<Employee> ans = new ArrayList<>();
+        double lowestSalary = getMinSalary(employees);
+        for (Employee employee : employees) {
+            if (employee.getSalary() == lowestSalary)
+                ans.add(employee);
+        }
+        return ans;
+    }
+
+    public static double getMaxSalary(ArrayList<Employee> employees) {
+        double maxSalary = employees.get(0).getSalary();
+        for (int i = 1; i < employees.size(); i++) {
+            if (maxSalary < employees.get(i).getSalary()) {
+                maxSalary = employees.get(i).getSalary();
+            }
+        }
+        return maxSalary;
+    }
+
+    public static double getMinSalary(ArrayList<Employee> employees) {
+        double minSalary = employees.get(0).getSalary();
+        for (int i = 1; i < employees.size(); i++) {
+            if (minSalary > employees.get(i).getSalary()) {
+                minSalary = employees.get(i).getSalary();
+            }
+        }
+        return minSalary;
     }
 }

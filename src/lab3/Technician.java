@@ -1,12 +1,8 @@
 package lab3;
 
-import java.util.Scanner;
-
 public class Technician extends Employee {
 
     private String operatingSystem;
-    
-    private Scanner sc = new Scanner(System.in);
     
     public Technician() {
     }
@@ -16,31 +12,14 @@ public class Technician extends Employee {
         this.operatingSystem = operatingSystem;
     }
 
-    public int getNumberOfAtributes() {
-        return getClass().getDeclaredFields().length
-                + getClass().getSuperclass().getDeclaredFields().length;
+    public String getOperatingSystem() {
+        return operatingSystem;
+    }
+
+    public void setOperatingSystem(String operatingSystem) {
+        this.operatingSystem = operatingSystem;
     }
     
-    @Override
-    public void printAtributs() {
-        super.printAtributs();
-        System.out.println("5. OperatingSystem");
-    }
-
-    @Override
-    public void updateAtributs(int choice) {
-        super.updateAtributs(choice);
-
-        switch (choice) {
-            case 5: {
-                System.out.print("Enter operating system: ");
-                String op = sc.nextLine();
-                this.operatingSystem = op;
-                break;
-            }
-        }
-    }
-
     @Override
     public double calculateSalary(int age) {
         return 20000.0 + (age - 18) * 4000;

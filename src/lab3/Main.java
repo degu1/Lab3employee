@@ -5,10 +5,10 @@
     on type of employee and only make changes in that employee class. 
 
  */
-
 package lab3;
 
 import analytics.AnalyticsUI;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -32,10 +32,11 @@ public class Main {
         System.out.println("2. Print all employees");
         System.out.println("3. Print employees by type");
         System.out.println("4. Print employee by id");
-        System.out.println("5. Update employee");
-        System.out.println("6. Remove employee");
-        System.out.println("7. Give employee bonus");
-        System.out.println("8. Analytics");
+        System.out.println("5. Print employee by name");
+        System.out.println("6. Update employee");
+        System.out.println("7. Remove employee");
+        System.out.println("8. Give employee bonus");
+        System.out.println("9. Analytics");
         System.out.println("0. Exit");
         System.out.print("Make your choice:");
         int choice = enterInt();
@@ -59,7 +60,7 @@ public class Main {
             }
 
             case 4: {
-                System.out.print("Enter id; ");
+                System.out.print("Enter id: ");
                 int id = sc.nextInt();
                 sc.nextLine();
                 System.out.println("");
@@ -69,20 +70,32 @@ public class Main {
             }
 
             case 5: {
+                System.out.print("Enter name: ");
+                String name = sc.nextLine();
+                System.out.println("");
+                ArrayList<Employee> searchResult = employeeManegment.searchEmployeeByName(name);
+                for (Employee employee : searchResult) {
+                    System.out.println(employee);
+                }
+                System.out.println("");
+                break;
+            }
+
+            case 6: {
                 updateEmplyee();
                 break;
             }
-            case 6: {
+            case 7: {
                 removeEmployee();
                 break;
             }
 
-            case 7: {
+            case 8: {
                 setBonusForEmplyee();
                 break;
             }
 
-            case 8: {
+            case 9: {
                 AnalyticsUI analytics = new AnalyticsUI();
                 analytics.AnalyticsMenu(employeeManegment.getAllEmployees());
                 break;
@@ -171,28 +184,35 @@ public class Main {
         System.out.println("3. Programmer");
         System.out.print("Enter number for title: ");
         int choice = enterInt();
+
+        System.out.print("Enter name:");
+        String name = sc.nextLine();
+
+        System.out.print("Enter age:");
+        int age = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter email:");
+        String email = sc.nextLine();
+
+        System.out.print("Enter tel:");
+        String tel = sc.nextLine();
+
         switch (choice) {
             case 1: {
-                Secretarie secretarie = new Secretarie();
-                for (int i = 1; i < secretarie.getNumberOfAtributes() + 1; i++) {
-                    secretarie.updateAtributs(i);
-                }
-                return secretarie;
+                System.out.print("Enter Office: ");
+                String office = sc.nextLine();
+                return new Secretarie(name, age, email, tel, office);
             }
             case 2: {
-                Technician technician = new Technician();
-                for (int i = 1; i < technician.getNumberOfAtributes() + 1; i++) {
-                    technician.updateAtributs(i);
-                }
-                return technician;
+                System.out.print("Enter operating system: ");
+                String op = sc.nextLine();
+                return new Technician(name, age, email, tel, op);
             }
             case 3: {
-
-                Programmer programmer = new Programmer();
-                for (int i = 1; i < programmer.getNumberOfAtributes() + 1; i++) {
-                    programmer.updateAtributs(i);
-                }
-                return programmer;
+                System.out.print("Enter language: ");
+                String language = sc.nextLine();
+                return new Programmer(name, age, email, tel, language);
             }
             default: {
                 System.out.println("Not valid choice");
@@ -212,15 +232,88 @@ public class Main {
         System.out.println("");
         System.out.println("What to update:");
 
-        employee.printAtributs();
+        System.out.println("1. Name");
+        System.out.println("2. Age");
+        System.out.println("3. Email");
+        System.out.println("4. tel");
+
+        if (employee instanceof Secretarie) {
+            System.out.println("5. Office");
+        } else if (employee instanceof Technician) {
+            System.out.println("5. OperatingSystem");
+        } else if (employee instanceof Programmer) {
+            System.out.println("5. Language");
+        }
 
         System.out.println("0. Exit update");
+        System.out.print("Make your choice: ");
         int choice = enterInt();
         System.out.println("");
         if (choice == 0) {
             return;
         }
-        employee.updateAtributs(choice);
+        updateAtributs(employee, choice);
+    }
+
+    public static void updateAtributs(Employee employee, int choice) {
+        boolean nextSwich = false;
+        switch (choice) {
+            case 1: {
+                System.out.print("Enter name: ");
+                String name = sc.nextLine();
+                employee.setName(name);
+                break;
+            }
+            case 2: {
+                System.out.print("Enter age: ");
+                int age = enterInt();
+                employee.setAge(age);
+                break;
+            }
+            case 3: {
+                System.out.print("Enter email: ");
+                String email = sc.nextLine();
+                employee.setEmail(email);
+                break;
+            }
+            case 4: {
+                System.out.print("Enter tel: ");
+                String tel = sc.nextLine();
+                employee.setTel(tel);
+                break;
+            }
+            default:
+                nextSwich = true;
+        }
+
+        if (nextSwich) {
+            if (employee instanceof Secretarie) {
+                switch (choice) {
+                    case 5: {
+                        System.out.print("Enter Office: ");
+                        String office = sc.nextLine();
+                        ((Secretarie) employee).setOffice(office);
+                    }
+                }
+            } else if (employee instanceof Technician) {
+                switch (choice) {
+                    case 5: {
+                        System.out.print("Enter OperatingSystem: ");
+                        String operatingSystem = sc.nextLine();
+                        ((Technician) employee).setOperatingSystem(operatingSystem);
+                    }
+                }
+            } else if (employee instanceof Programmer) {
+                switch (choice) {
+                    case 5: {
+                        System.out.print("Enter Language :");
+                        String language = sc.nextLine();
+                        ((Programmer) employee).setLanguage(language);
+                    }
+                }
+            }
+
+        }
 
     }
 
