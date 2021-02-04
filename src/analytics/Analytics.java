@@ -1,8 +1,6 @@
 package analytics;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import javafx.print.Collation;
 import lab3.Employee;
 import lab3.Programmer;
 import lab3.Secretarie;

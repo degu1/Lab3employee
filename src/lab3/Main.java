@@ -1,10 +1,3 @@
-/*
-    The Main class contains except the code that directly depends on the 
-    attributes for the different employees. This code is found in Employee 
-    class and it’s subclasses. This makes it possible to add a new attribute to 
-    on type of employee and only make changes in that employee class. 
-
- */
 package lab3;
 
 import analytics.AnalyticsUI;

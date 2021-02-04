@@ -1,6 +1,3 @@
-/*
-    The EmployeeManegment class contains all the logic for handling the employees 
- */
 package lab3;
 
 import java.util.ArrayList;
