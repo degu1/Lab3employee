@@ -75,6 +75,14 @@ public class EmployeeManegment {
     public void setBonusForEmplyee(Employee employee, int preformance) {
         employee.setBonus(preformance);
     }
+    
+    public void sortEmplyeeByName(){
+    employeeRecords.sort((emplyee, emplyee1) -> emplyee.getName().compareToIgnoreCase(emplyee1.getName()));
+    }
+    
+    public void sortEmplyeeByAge(){
+    employeeRecords.sort((emplyee,emplyee1) -> emplyee.getAge()- emplyee1.getAge());
+    }
 
     public void loadDB() {
         Secretarie e1 = new Secretarie("Dennis", 39, "dennis@mail.com", "976549", "Main office");

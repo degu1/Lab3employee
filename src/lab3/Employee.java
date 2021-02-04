@@ -78,6 +78,7 @@ public class Employee {
     public void setBonus(int preformance) {
         this.bonus = 1000.0 * preformance;
     }
+    
 
     @Override
     public String toString() {

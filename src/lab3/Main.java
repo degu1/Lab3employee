@@ -13,7 +13,7 @@ public class Main {
 
         employeeManegment.loadDB();
         employeeManegment.loadBonus();
-
+        employeeManegment.sortEmplyeeByAge();
         while (true) {
             mainMenu();
         }
