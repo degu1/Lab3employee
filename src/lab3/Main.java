@@ -1,6 +1,7 @@
 package lab3;
 
-import analytics.AnalyticsUI;
+
+import static analytics.AnalyticsUI.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -89,8 +90,7 @@ public class Main {
             }
 
             case 9: {
-                AnalyticsUI analytics = new AnalyticsUI();
-                analytics.AnalyticsMenu(employeeManegment.getAllEmployees());
+                analyticsMenu(employeeManegment.getAllEmployees());
                 break;
             }
             default:

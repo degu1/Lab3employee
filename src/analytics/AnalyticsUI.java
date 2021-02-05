@@ -7,9 +7,9 @@ import static analytics.Analytics.*;
 
 public class AnalyticsUI {
 
-    private Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
 
-    public void AnalyticsMenu(ArrayList<Employee> employeeRecord) {
+    public static void analyticsMenu(ArrayList<Employee> employeeRecord) {
         boolean inAnalyticsMenu = true;
         while (inAnalyticsMenu) {
             System.out.println("1. Average salary");
@@ -44,7 +44,7 @@ public class AnalyticsUI {
         }
     }
 
-    private void printAverageSalary(ArrayList<Employee> employeeRecord) {
+    private static void printAverageSalary(ArrayList<Employee> employeeRecord) {
 
         double[] averageSalarys = averageSalary(employeeRecord);
         System.out.println("The total average salary is " + Math.round(averageSalarys[0]) + ".");
@@ -54,7 +54,7 @@ public class AnalyticsUI {
         System.out.println("");
     }
 
-    private void printBonusDist(ArrayList<Employee> employeeRecord) {
+    private static void printBonusDist(ArrayList<Employee> employeeRecord) {
 
         double[] bonusDis = bonusDistribution(employeeRecord);
         System.out.println("Programmers get " + bonusDis[0] + "% of the total bonus.");
@@ -63,7 +63,7 @@ public class AnalyticsUI {
         System.out.println("");
     }
 
-    private void printEmployeeHighestSalary(ArrayList<Employee> employeeRecord) {
+    private static void printEmployeeHighestSalary(ArrayList<Employee> employeeRecord) {
 
         ArrayList<Employee> searchResult = getEmplyeesHighestSalary(employeeRecord);
         for (Employee employee : searchResult) {
@@ -72,7 +72,7 @@ public class AnalyticsUI {
         System.out.println("");
     }
 
-    private void printEmployeeLowestSalary(ArrayList<Employee> employeeRecord) {
+    private static void printEmployeeLowestSalary(ArrayList<Employee> employeeRecord) {
         ArrayList<Employee> searchResult = getEmplyeesLowestSalary(employeeRecord);
         for (Employee employee : searchResult) {
             System.out.println(employee);
@@ -80,7 +80,7 @@ public class AnalyticsUI {
         System.out.println("");
     }
 
-    private int enterInt() {
+    private static int enterInt() {
         int integer = sc.nextInt();
         sc.nextLine();
         return integer;
