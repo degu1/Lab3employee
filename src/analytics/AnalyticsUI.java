@@ -23,6 +23,7 @@ public class AnalyticsUI {
             switch (choice) {
                 case 0: {
                     inAnalyticsMenu = false;
+                    break;
                 }
                 case 1: {
                     printAverageSalary(employeeRecord);

@@ -3,9 +3,6 @@ package lab3;
 public class Secretarie extends Employee {
 
     private String office;
-    
-    public Secretarie() {
-    }
 
     public Secretarie(String name, int age, String email, String tel, String office) {
         super(name, age, email, tel);

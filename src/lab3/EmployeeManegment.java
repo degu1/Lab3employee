@@ -55,7 +55,7 @@ public class EmployeeManegment {
                 return employee;
             }
         }
-        return new Employee();
+        return null;
     }
 
     public ArrayList<Employee> searchEmployeeByName(String searchName) {

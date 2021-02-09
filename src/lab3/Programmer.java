@@ -4,9 +4,6 @@ public class Programmer extends Employee {
 
     private String language;
     
-    public Programmer() {
-    }
-
     public Programmer(String name, int age, String email, String tel, String language) {
         super(name, age, email, tel);
         this.language = language;

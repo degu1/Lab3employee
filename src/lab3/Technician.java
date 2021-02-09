@@ -4,9 +4,6 @@ public class Technician extends Employee {
 
     private String operatingSystem;
     
-    public Technician() {
-    }
-
     public Technician(String name, int age, String email, String tel, String operatingSystem) {
         super(name, age, email, tel);
         this.operatingSystem = operatingSystem;

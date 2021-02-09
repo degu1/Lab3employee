@@ -11,9 +11,7 @@ public class Employee {
     private String email;
     private String tel;
 
-    public Employee() {
-        this.id = idGenerator++;
-    }
+
 
     public Employee(String name, int age, String email, String tel) {
 
