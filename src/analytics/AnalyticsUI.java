@@ -15,6 +15,8 @@ public class AnalyticsUI {
         System.out.print("Make your choice: ");
         int choice = enterInt();
         System.out.println("");
+        
+        
         switch (choice) {
             case 1: {
                 printAverageSalary(employeeRecord);
