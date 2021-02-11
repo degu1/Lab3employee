@@ -1,9 +1,9 @@
 package lab3;
 
-
 import static analytics.AnalyticsUI.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import static UIMaker.UIMaker.*;
 
 public class Main {
 
@@ -22,20 +22,31 @@ public class Main {
     }
 
     public static void mainMenu() {
-        System.out.println("1. Add employee");
-        System.out.println("2. Print all employees");
-        System.out.println("3. Print employees by type");
-        System.out.println("4. Print employee by id");
-        System.out.println("5. Print employee by name");
-        System.out.println("6. Update employee");
-        System.out.println("7. Remove employee");
-        System.out.println("8. Give employee bonus");
-        System.out.println("9. Analytics");
-        System.out.println("0. Exit");
-        System.out.print("Make your choice:");
-        int choice = enterInt();
-        System.out.println("");
+//        System.out.println("1. Add employee");
+//        System.out.println("2. Print all employees");
+//        System.out.println("3. Print employees by type");
+//        System.out.println("4. Print employee by id");
+//        System.out.println("5. Print employee by name");
+//        System.out.println("6. Update employee");
+//        System.out.println("7. Remove employee");
+//        System.out.println("8. Give employee bonus");
+//        System.out.println("9. Analytics");
+//        System.out.println("0. Exit");
+//        System.out.print("Make your choice:");
+//        int choice = enterInt();
+//        System.out.println("");
 
+        String[] menu = {
+            "Add employee",
+            "Print all employees",
+            "Print employees by type",
+            "Print employee by id",
+            "Print employee by name",
+            "Update employee",
+            "Remove employee",
+            "Give employee bonus",
+            "Analytics"};
+        int choice = menu("Main Menu", menu, "Exit Program");
         switch (choice) {
             case 0: {
                 System.exit(0);

@@ -1,5 +1,6 @@
 package analytics;
 
+import static UIMaker.UIMaker.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import lab3.Employee;
@@ -12,14 +13,24 @@ public class AnalyticsUI {
     public static void analyticsMenu(ArrayList<Employee> employeeRecord) {
         boolean inAnalyticsMenu = true;
         while (inAnalyticsMenu) {
-            System.out.println("1. Average salary");
-            System.out.println("2. Bonus disttriution");
-            System.out.println("3. Print employees with highest salary");
-            System.out.println("4. Print employees with lowest salary");
-            System.out.println("0. Main menu");
-            System.out.print("Make your choice: ");
-            int choice = enterInt();
-            System.out.println("");
+//            System.out.println("1. Average salary");
+//            System.out.println("2. Bonus disttriution");
+//            System.out.println("3. Print employees with highest salary");
+//            System.out.println("4. Print employees with lowest salary");
+//            System.out.println("0. Main menu");
+//            System.out.print("Make your choice: ");
+//            int choice = enterInt();
+//            System.out.println("");
+
+            String[] menu = {
+                "Average salary",
+                "Bonus disttriution",
+                "Print employees with highest salary",
+                "Print employees with lowest salary"
+            };
+
+            int choice = menu("Analytics Menu", menu, "Main Menu"
+                    + "");
             switch (choice) {
                 case 0: {
                     inAnalyticsMenu = false;
