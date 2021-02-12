@@ -14,7 +14,7 @@ public class Main {
 
         employeeManegment.loadDB();
         employeeManegment.loadBonus();
-        //employeeManegment.sortEmplyeeByAge();
+
         while (true) {
             mainMenu();
         }
@@ -22,19 +22,6 @@ public class Main {
     }
 
     public static void mainMenu() {
-//        System.out.println("1. Add employee");
-//        System.out.println("2. Print all employees");
-//        System.out.println("3. Print employees by type");
-//        System.out.println("4. Print employee by id");
-//        System.out.println("5. Print employee by name");
-//        System.out.println("6. Update employee");
-//        System.out.println("7. Remove employee");
-//        System.out.println("8. Give employee bonus");
-//        System.out.println("9. Analytics");
-//        System.out.println("0. Exit");
-//        System.out.print("Make your choice:");
-//        int choice = enterInt();
-//        System.out.println("");
 
         String[] menu = {
             "Add employee",
@@ -56,7 +43,7 @@ public class Main {
                 break;
             }
             case 2: {
-                printEmployees();
+                printAllEmployeesMenu();
                 break;
             }
             case 3: {
@@ -90,6 +77,7 @@ public class Main {
                 updateEmplyee();
                 break;
             }
+            
             case 7: {
                 removeEmployee();
                 break;
@@ -109,6 +97,71 @@ public class Main {
         }
     }
 
+    public static void printAllEmployeesMenu() {
+        String[] menu = {
+            "Sort by id",
+            "Sort by name rising",
+            "Sort by name falling",
+            "Sort by age rising",
+            "Sort by age falling",
+            "Sort by proffession then subclass atribute",
+            "Sort by age then name",
+            "Sort by bonus"
+        };
+
+        int choice = menuMaker(menu, "Main menu");
+
+        switch (choice) {
+
+            case 0: {
+                break;
+            }
+            case 1: {
+                employeeManegment.sortEmplyeeById();
+                printEmployees();
+                break;
+            }
+            case 2: {
+                employeeManegment.sortEmplyeeByNameRising();
+                printEmployees();
+                break;
+            }
+            case 3: {
+                employeeManegment.sortEmplyeeByNameFalling();
+                printEmployees();
+                break;
+            }
+            case 4: {
+                employeeManegment.sortEmplyeeByAgeRising();
+                printEmployees();
+                break;
+            }
+            case 5: {
+                employeeManegment.sortEmplyeeByAgeFalling();
+                printEmployees();
+                break;
+            }
+            case 6: {
+                employeeManegment.sortByProffessionThenObjectSpecific();
+                printEmployees();
+                break;
+            }
+            case 7: {
+                employeeManegment.sortByAgeThenName();
+                printEmployees();
+                break;
+            }
+            case 8: {
+                employeeManegment.sortByBonus();
+                printEmployees();
+                break;
+            }
+            default: {
+            }
+        }
+
+    }
+
     public static void printEmployees() {
         for (Employee employee : employeeManegment.getAllEmployees()) {
             System.out.println(employee);
@@ -117,13 +170,13 @@ public class Main {
     }
 
     public static void printByTypeMenue() {
+        String[] menu = {
+            "Secretaire",
+            "Technician",
+            "Programmer"
+        };
 
-        System.out.println("1. Programmer");
-        System.out.println("2. Secritary");
-        System.out.println("3. Technican");
-        System.out.print("Choose type: ");
-        int choice = enterInt();
-        System.out.println("");
+        int choice = menuMaker(menu);
         switch (choice) {
             case 1:
                 printProgrammers();
@@ -182,12 +235,13 @@ public class Main {
     }
 
     public static Employee makeEmployee() {
+        String[] menu = {
+            "Secretaire",
+            "Technician",
+            "Programmer"
+        };
 
-        System.out.println("1. Secretaire");
-        System.out.println("2. Technician");
-        System.out.println("3. Programmer");
-        System.out.print("Enter number for title: ");
-        int choice = enterInt();
+        int choice = menuMaker(menu);
 
         System.out.print("Enter name:");
         String name = sc.nextLine();

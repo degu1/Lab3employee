@@ -1,6 +1,9 @@
 package lab3;
 
-public class Employee {
+import java.util.Comparator;
+
+
+public class Employee implements Comparable<Employee>{
 
     private int id;
     private static int idGenerator = 1;
@@ -86,4 +89,10 @@ public class Employee {
                 + ", Bonus: " + bonus;
     }
 
+    @Override
+    public int compareTo(Employee t) {
+        return id-t.getId();
+    }
+    
+    
 }

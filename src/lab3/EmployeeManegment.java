@@ -1,6 +1,8 @@
 package lab3;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 public class EmployeeManegment {
@@ -59,10 +61,10 @@ public class EmployeeManegment {
     }
 
     public ArrayList<Employee> searchEmployeeByName(String searchName) {
-        
+
         ArrayList<Employee> searchresult = new ArrayList<>();
         searchName = searchName.trim().toLowerCase();
-        
+
         for (Employee employee : employeeRecords) {
             if (employee.getName().toLowerCase().contains(searchName)) {
                 searchresult.add(employee);
@@ -75,31 +77,67 @@ public class EmployeeManegment {
     public void setBonusForEmplyee(Employee employee, int preformance) {
         employee.setBonus(preformance);
     }
+
+    public void sortEmplyeeById() {
+        employeeRecords.sort(null);
+    }
+
+    public void sortEmplyeeByNameRising() {
+        employeeRecords.sort((emplyee, emplyee1) -> emplyee.getName().compareToIgnoreCase(emplyee1.getName()));
+    }
+
+    public void sortEmplyeeByNameFalling() {
+        employeeRecords.sort((emplyee, emplyee1) -> -(emplyee.getName().compareToIgnoreCase(emplyee1.getName())));
+    }
+
+    public void sortEmplyeeByAgeRising() {
+        employeeRecords.sort((emplyee, emplyee1) -> emplyee.getAge() - emplyee1.getAge());
+    }
+
+    public void sortEmplyeeByAgeFalling() {
+        employeeRecords.sort((emplyee, emplyee1) -> -(emplyee.getAge() - emplyee1.getAge()));
+    }
+
+    public void sortByProffessionThenObjectSpecific() {
+        employeeRecords.sort(new sortByProffessionThenObjectSpecific());
+    }
+
+    private Comparator<Employee> sortByBonus = new Comparator<Employee>() {
+        @Override
+        public int compare(Employee t, Employee t1) {
+            return (int) (t.getBonus() - t1.getBonus());
+        }
+    };
+
     
-    public void sortEmplyeeByName(){
-    employeeRecords.sort((emplyee, emplyee1) -> emplyee.getName().compareToIgnoreCase(emplyee1.getName()));
+    public void sortByBonusFalling() {
+        employeeRecords.sort(sortByBonus);
+    }
+    public void sortByBonus(){
+    //employeeRecords.sort(Comparator.comparing(t -> t.getBonus()));//Employee::getBonus).reversed());
+    employeeRecords.sort(Comparator.comparing(Employee::getBonus).reversed());
     }
     
-    public void sortEmplyeeByAge(){
-    employeeRecords.sort((emplyee,emplyee1) -> emplyee.getAge()- emplyee1.getAge());
+    public void sortByAgeThenName(){
+    employeeRecords.sort(Comparator.comparing(Employee::getAge).thenComparing(Employee::getName));
     }
 
     public void loadDB() {
-        Secretarie e1 = new Secretarie("Dennis", 39, "dennis@mail.com", "976549", "Main office");
-        Technician e2 = new Technician("Stina", 23, "stina@mail.com", "235326", "Win");
-        Programmer e3 = new Programmer("Clas", 33, "clas@mail.com", "236526", "Java");
-        Secretarie e4 = new Secretarie("Alice", 26, "alice@mail.com", "324556", "Main office");
-        Secretarie e5 = new Secretarie("Noah", 47, "noah@mail.com", "523634", "Main office");
-        Programmer e6 = new Programmer("Elsa", 21, "elsa@mail.com", "326789", "Java");
-        Programmer e7 = new Programmer("Astrid", 28, "astrid@mail.com", "346523", "C++");
-        Programmer e8 = new Programmer("Lucas", 50, "lucas@mail.com", "763454", "C++");
-        Programmer e9 = new Programmer("Liam", 37, "liam@mail.com", "344576", "Java");
+        Secretarie e1 = new Secretarie("Dennis", 39, "dennis@mail.com", "976549", "a Main office");
+        Technician e2 = new Technician("Stina", 23, "stina@mail.com", "235326", "e Win");
+        Programmer e3 = new Programmer("Clas", 33, "clas@mail.com", "236526", "e Java");
+        Secretarie e4 = new Secretarie("Alice", 26, "alice@mail.com", "324556", "c Main office");
+        Secretarie e5 = new Secretarie("Noah", 47, "noah@mail.com", "523634", "b Main office");
+        Programmer e6 = new Programmer("Elsa", 21, "elsa@mail.com", "326789", "b Java");
+        Programmer e7 = new Programmer("Astrid", 28, "astrid@mail.com", "346523", "a C++");
+        Programmer e8 = new Programmer("Lucas", 50, "lucas@mail.com", "763454", "d C++");
+        Programmer e9 = new Programmer("Liam", 37, "liam@mail.com", "344576", "c Java");
         Programmer e10 = new Programmer("Freja", 21, "freja@mail.com", "485623", "C++");
-        Technician e11 = new Technician("Oscar", 37, "oscar@mail.com", "456872", "Win");
-        Technician e12 = new Technician("Olivia", 28, "olivia@mail.com", "352634", "Win");
-        Technician e13 = new Technician("Matteo", 24, "matteo@mail.com", "126236", "Linux");
-        Technician e14 = new Technician("Selma", 32, "selma@mail.com", "346734", "Linux");
-        Technician e15 = new Technician("Oliver", 35, "oliver@mail.com", "435465", "Win");
+        Technician e11 = new Technician("Oscar", 37, "oscar@mail.com", "456872", "a Win");
+        Technician e12 = new Technician("Olivia", 28, "olivia@mail.com", "352634", "c Win");
+        Technician e13 = new Technician("Matteo", 24, "matteo@mail.com", "126236", "b Linux");
+        Technician e14 = new Technician("Selma", 32, "selma@mail.com", "346734", "d Linux");
+        Technician e15 = new Technician("Oliver", 35, "oliver@mail.com", "435465", "f Win");
 
         employeeRecords.add(e1);
         employeeRecords.add(e2);
