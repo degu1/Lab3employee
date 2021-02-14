@@ -18,7 +18,6 @@ public class Main {
         while (true) {
             mainMenu();
         }
-
     }
 
     public static void mainMenu() {
@@ -52,23 +51,16 @@ public class Main {
             }
 
             case 4: {
-                System.out.print("Enter id: ");
-                int id = sc.nextInt();
-                sc.nextLine();
-                System.out.println("");
-                printEmployeeById(id);
-
+                printEmployeeById();
                 break;
             }
 
             case 5: {
-                System.out.print("Enter name: ");
-                String name = sc.nextLine();
-                System.out.println("");
+                String name = enterString("Enter name: ");
                 ArrayList<Employee> searchResult = employeeManegment.searchEmployeeByName(name);
-                for (Employee employee : searchResult) {
+                searchResult.forEach((employee) -> {
                     System.out.println(employee);
-                }
+                });
                 System.out.println("");
                 break;
             }
@@ -77,7 +69,7 @@ public class Main {
                 updateEmplyee();
                 break;
             }
-            
+
             case 7: {
                 removeEmployee();
                 break;
@@ -211,14 +203,16 @@ public class Main {
         System.out.println("");
     }
 
-    public static void printEmployeeById(int id) {
-        for (Employee employee : employeeManegment.getAllEmployees()) {
-            if (employee.getId() == id) {
-                System.out.println(employee);
-                break;
-            }
+    public static void printEmployeeById() {
+        int id = enterInt("Enter id: ");
+        try {
+            Employee employee = employeeManegment.getEmployeeFromId(id);
+            System.out.println(employee);
+            System.out.println("");
+        } catch (DidNotFindIdException e) {
+            System.out.println("Did not find id in emplyee records.");
+            System.out.println("");
         }
-        System.out.println("");
     }
 
     public static void addEmployee() {
@@ -240,36 +234,24 @@ public class Main {
             "Technician",
             "Programmer"
         };
-
         int choice = menuMaker(menu);
 
-        System.out.print("Enter name:");
-        String name = sc.nextLine();
-
-        System.out.print("Enter age:");
-        int age = sc.nextInt();
-        sc.nextLine();
-
-        System.out.print("Enter email:");
-        String email = sc.nextLine();
-
-        System.out.print("Enter tel:");
-        String tel = sc.nextLine();
+        String name = enterString("Enter name: ");
+        int age = enterInt("Enter age: ");
+        String email = enterString("Eneter email: ");
+        String tel = enterString("Enter tel: ");
 
         switch (choice) {
             case 1: {
-                System.out.print("Enter Office: ");
-                String office = sc.nextLine();
+                String office = enterString("Enter office: ");
                 return new Secretarie(name, age, email, tel, office);
             }
             case 2: {
-                System.out.print("Enter operating system: ");
-                String op = sc.nextLine();
+                String op = enterString("Enter operating system: ");
                 return new Technician(name, age, email, tel, op);
             }
             case 3: {
-                System.out.print("Enter language: ");
-                String language = sc.nextLine();
+                String language = enterString("Enter language: ");
                 return new Programmer(name, age, email, tel, language);
             }
             default: {
@@ -283,60 +265,60 @@ public class Main {
     }
 
     public static void updateEmplyee() {
-        System.out.print("Enter id of emplyee: ");
-        int id = enterInt();
-        Employee employee = employeeManegment.getEmployeeFromId(id);
+        try {
+            int id = enterInt("Enter id of emplyee: ");
+            Employee employee = employeeManegment.getEmployeeFromId(id);
 
-        System.out.println("");
-        System.out.println("What to update:");
+            System.out.println("");
+            System.out.println("What to update:");
 
-        System.out.println("1. Name");
-        System.out.println("2. Age");
-        System.out.println("3. Email");
-        System.out.println("4. tel");
+            System.out.println("1. Name");
+            System.out.println("2. Age");
+            System.out.println("3. Email");
+            System.out.println("4. tel");
+     
 
-        if (employee instanceof Secretarie) {
-            System.out.println("5. Office");
-        } else if (employee instanceof Technician) {
-            System.out.println("5. OperatingSystem");
-        } else if (employee instanceof Programmer) {
-            System.out.println("5. Language");
+            if (employee instanceof Secretarie) {
+                System.out.println("5. Office");
+            } else if (employee instanceof Technician) {
+                System.out.println("5. OperatingSystem");
+            } else if (employee instanceof Programmer) {
+                System.out.println("5. Language");
+            }
+
+            System.out.println("0. Exit update");
+            int choice = enterInt("Make your choice: ");
+            System.out.println("");
+            if (choice == 0) {
+                return;
+            }
+            updateAtributs(employee, choice);
+        } catch (DidNotFindIdException e) {
+            System.out.println("Did't fint any emplyee by id");
+            System.out.println("");
         }
-
-        System.out.println("0. Exit update");
-        System.out.print("Make your choice: ");
-        int choice = enterInt();
-        System.out.println("");
-        if (choice == 0) {
-            return;
-        }
-        updateAtributs(employee, choice);
     }
 
     public static void updateAtributs(Employee employee, int choice) {
         boolean nextSwich = false;
         switch (choice) {
             case 1: {
-                System.out.print("Enter name: ");
-                String name = sc.nextLine();
+                String name = enterString("Enter name: ");
                 employee.setName(name);
                 break;
             }
             case 2: {
-                System.out.print("Enter age: ");
-                int age = enterInt();
+                int age = enterInt("Enter age: ");
                 employee.setAge(age);
                 break;
             }
             case 3: {
-                System.out.print("Enter email: ");
-                String email = sc.nextLine();
+                String email = enterString("Enter email: ");
                 employee.setEmail(email);
                 break;
             }
             case 4: {
-                System.out.print("Enter tel: ");
-                String tel = sc.nextLine();
+                String tel = enterString("Enter §tel: ");
                 employee.setTel(tel);
                 break;
             }
@@ -348,24 +330,21 @@ public class Main {
             if (employee instanceof Secretarie) {
                 switch (choice) {
                     case 5: {
-                        System.out.print("Enter Office: ");
-                        String office = sc.nextLine();
+                        String office = enterString("Enter office: ");
                         ((Secretarie) employee).setOffice(office);
                     }
                 }
             } else if (employee instanceof Technician) {
                 switch (choice) {
                     case 5: {
-                        System.out.print("Enter OperatingSystem: ");
-                        String operatingSystem = sc.nextLine();
+                        String operatingSystem = enterString("Enter OperatingSystem: ");
                         ((Technician) employee).setOperatingSystem(operatingSystem);
                     }
                 }
             } else if (employee instanceof Programmer) {
                 switch (choice) {
                     case 5: {
-                        System.out.print("Enter Language :");
-                        String language = sc.nextLine();
+                        String language = enterString("Enter Language: ");
                         ((Programmer) employee).setLanguage(language);
                     }
                 }
@@ -376,27 +355,24 @@ public class Main {
     }
 
     public static void removeEmployee() {
-        System.out.println("Enter employee id you want to remove:");
-        int id = enterInt();
+        int id = enterInt("Enter employee id you want to remove:");
         System.out.println("");
-        employeeManegment.removeEmployee(id);
+        try{employeeManegment.removeEmployee(id);}
+        catch(DidNotFindIdException e){
+            System.out.println("Did not remove emplyee with id " + id +".");
+            System.out.println("");
+        };
     }
 
     public static void setBonusForEmplyee() {
-        System.out.print("Enter id: ");
-        int id = enterInt();
-        System.out.println("");
-        Employee employee = employeeManegment.getEmployeeFromId(id);
-        System.out.print("How has " + employee.getName() + " prformanc been (1-10)? ");
-        int preformance = enterInt();
-        System.out.println("");
-        employeeManegment.setBonusForEmplyee(employee, preformance);
-
-    }
-
-    private static int enterInt() {
-        int integer = sc.nextInt();
-        sc.nextLine();
-        return integer;
+        int id = enterInt("Enter id: ");
+        try {
+            Employee employee = employeeManegment.getEmployeeFromId(id);
+            int preformance = enterInt("How has " + employee.getName() + " prformanc been (1-10)? ");
+            System.out.println("");
+            employeeManegment.setBonusForEmplyee(employee, preformance);
+        } catch (DidNotFindIdException e) {
+            System.out.println("Did't find emplyee with id " + id);
+        }
     }
 }

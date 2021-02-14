@@ -43,21 +43,24 @@ public class EmployeeManegment {
         return technicians;
     }
 
-    public void removeEmployee(int id) {
-        employeeRecords.removeIf(employee -> employee.getId() == id);
+    public void removeEmployee(int id) throws DidNotFindIdException {
+        boolean removed = employeeRecords.removeIf(employee -> employee.getId() == id);
+        if (!removed) {
+            throw new DidNotFindIdException();
+        }
     }
 
     public void addEmployee(Employee employee) {
         employeeRecords.add(employee);
     }
 
-    public Employee getEmployeeFromId(int id) {
+    public Employee getEmployeeFromId(int id) throws DidNotFindIdException {
         for (Employee employee : employeeRecords) {
             if (employee.getId() == id) {
                 return employee;
             }
         }
-        return null;
+        throw new DidNotFindIdException();
     }
 
     public ArrayList<Employee> searchEmployeeByName(String searchName) {
@@ -109,17 +112,17 @@ public class EmployeeManegment {
         }
     };
 
-    
     public void sortByBonusFalling() {
         employeeRecords.sort(sortByBonus);
     }
-    public void sortByBonus(){
-    //employeeRecords.sort(Comparator.comparing(t -> t.getBonus()));//Employee::getBonus).reversed());
-    employeeRecords.sort(Comparator.comparing(Employee::getBonus).reversed());
+
+    public void sortByBonus() {
+        //employeeRecords.sort(Comparator.comparing(t -> t.getBonus()));//Employee::getBonus).reversed());
+        employeeRecords.sort(Comparator.comparing(Employee::getBonus).reversed());
     }
-    
-    public void sortByAgeThenName(){
-    employeeRecords.sort(Comparator.comparing(Employee::getAge).thenComparing(Employee::getName));
+
+    public void sortByAgeThenName() {
+        employeeRecords.sort(Comparator.comparing(Employee::getAge).thenComparing(Employee::getName));
     }
 
     public void loadDB() {
